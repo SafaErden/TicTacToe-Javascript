@@ -16,13 +16,7 @@ window.onload = () => {
 	};
 
 	let scores = scoreBoard();
-	// scores.update('X');
-	// scores.update('X');
-	// scores.update('O');
-	// scores.update('X');
-	// scores.update('O');
-	// scores.update('X');
-	// scores.update('O');
+	document.getElementById('startGame').style.display = 'none';
 };
 let playerLetters = [];
 const Player = (name, letter) => {
@@ -52,7 +46,8 @@ createPlayer.addEventListener('click', (e) => {
 		playerLetter[0] == 'X' ? (otherLetter = 'O') : (otherLetter = 'X');
 		player2 = Player(playerName, otherLetter);
 		playerLetters.push(otherLetter);
-		console.log(player2);
+		document.getElementById('createPlayers').style.display = 'none';
+		document.getElementById('startGame').style.display = '';
 	} else {
 		return;
 	}
