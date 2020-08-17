@@ -47,7 +47,7 @@ createPlayer.addEventListener('click', (e) => {
 		document.getElementById(
 			'letterInfo'
 		).innerText = `Player 1 has chosen: ${player1.letter}, Player 2 will play with: ${otherLetter}`;
-		console.log(player1);
+		document.getElementById('name').value = '';
 	} else if (playerLetters[0] != null && playerLetters[1] == null) {
 		playerLetter[0] == 'X' ? (otherLetter = 'O') : (otherLetter = 'X');
 		player2 = Player(playerName, otherLetter);
