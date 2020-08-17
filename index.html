@@ -30,17 +30,18 @@
     <div class="row">
         <form class="col p-5">
           <div class="form-group">
-            <label for="name">Player Name</label>
+            <label for="name" id="nameLabel">Player 1 Name: </label>
             <input type="text" class="form-control" id="name">
           </div>
-          <div class="form-group">
-            <label for="letter">Player Letter</label>
+          <div id="letterInfo" class=" font-weight-bold mb-2 text-primary"></div>
+          <div class="form-group" id="letterOptions">
+            <label for="letter">Player 1 Letter:</label>
             <select class="form-control" id="letter">
               <option value="X">X</option>
               <option value="O">O</option>
             </select>
           </div>
-          <button type="submit" class="btn btn-success w-100 p-3">Create Player</button>
+          <button type="submit" class="btn btn-success w-100 p-3" id="createPlayer">Create Player</button>
         </form>
     </div>
 
