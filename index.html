@@ -46,16 +46,16 @@
     </div>
 
     <div class="row p-5" id="startGame">
-            <div class="col-6 text-center h3 bg-primary text-white p-3 border border-white rounded font-weight-bold">Player 1:<span class="font-weight-normal" id="X">Safa</span>
-              <div>X</div>
+            <div class="col-6 text-center h3 bg-primary text-white p-3 border border-white rounded font-weight-bold">Player 1:<span class="font-weight-normal" id="playerOne"></span>
+              <div id="oneLetter"></div>
             </div>
-            <div class="col-6 text-center h3 bg-primary text-white p-3 border border-white rounded font-weight-bold">Player 2: <span class="font-weight-normal" id="O">Phillip</span>
-              <div>O</div>
+            <div class="col-6 text-center h3 bg-primary text-white p-3 border border-white rounded font-weight-bold">Player 2: <span class="font-weight-normal" id="playerTwo"></span>
+              <div id="twoLetter"></div>
             </div>
-      <button type="submit" class="btn btn-success w-100 p-3">Start Game</button>
+      <button type="submit" class="btn btn-success w-100 p-3" id="startGameButton">Start Game</button>
     </div>
 
-    <div class="mt-5">
+    <div class="mt-5" id="board">
       <div class="row">
         <div class="col text-success h3 p-0">
           <span id="playerName">Player</span> it is your turn... 
@@ -78,7 +78,7 @@
       </div>
     </div>
 
-    <div class="row">
+    <div class="row" id="newRound">
       <div class="col text-center">
         <img src="assets/congrats.jpg" alt="congratulations" class="img-fluid">
         <h1 class="satisfy text-primary">

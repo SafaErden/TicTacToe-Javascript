@@ -17,6 +17,8 @@ window.onload = () => {
 
 	let scores = scoreBoard();
 	document.getElementById('startGame').style.display = 'none';
+	document.getElementById('board').style.display = 'none';
+	document.getElementById('newRound').style.display = 'none';
 };
 let playerLetters = [];
 const Player = (name, letter) => {
@@ -48,9 +50,22 @@ createPlayer.addEventListener('click', (e) => {
 		playerLetters.push(otherLetter);
 		document.getElementById('createPlayers').style.display = 'none';
 		document.getElementById('startGame').style.display = '';
+		document.getElementById('playerOne').innerText = player1.name;
+		document.getElementById('playerTwo').innerText = player2.name;
+		document.getElementById('oneLetter').innerText = player1.letter;
+		document.getElementById('twoLetter').innerText = player2.letter;
 	} else {
 		return;
 	}
+});
+
+var createPlayer = document.querySelector('#startGameButton');
+createPlayer.addEventListener('click', (e) => {
+	e.preventDefault();
+	document.getElementById('startGame').style.display = 'none';
+	//initialize a new board here
+	// create board module with functions below
+	document.getElementById('board').style.display = '';
 });
 
 // scoreBoard.updateScore(winner);
