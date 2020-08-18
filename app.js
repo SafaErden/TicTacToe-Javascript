@@ -1,6 +1,33 @@
-document.getElementById('startGame').style.display = 'none';
-document.getElementById('board').style.display = 'none';
-document.getElementById('newRound').style.display = 'none';
+import {
+	board,
+	newRound,
+	xScore,
+	oScore,
+	cells,
+	createPlayer,
+	pName,
+	pLetter,
+	nameLabel,
+	letterOptions,
+	letterInfo,
+	createPlayers,
+	startGame,
+	playerOne,
+	playerTwo,
+	oneLetter,
+	twoLetter,
+	reloader,
+	nextRound,
+	winnerName,
+	startGamebtn,
+	playerName
+} from "dom";
+
+
+startGame.style.display = 'none';
+board.style.display = 'none';
+newRound.style.display = 'none';
+
 
 const scoreBoard = () => {
 	let x = 0;
@@ -9,10 +36,10 @@ const scoreBoard = () => {
 	const update = (winner) => {
 		if (winner == 'X') {
 			x += 1;
-			document.getElementById('xScore').innerText = x;
+			xScore.innerText = x;
 		} else {
 			o += 1;
-			document.getElementById('oScore').innerText = o;
+			oScore.innerText = o;
 		}
 	};
 	return { x, o, update };
@@ -20,7 +47,6 @@ const scoreBoard = () => {
 
 let scores = scoreBoard();
 
-let cells = document.querySelectorAll('.hoverable');
 
 let playerLetters = [];
 let players = [];
@@ -38,34 +64,33 @@ const Player = (name, letter) => {
 	return { name, letter, move, moves, clearMoves };
 };
 
-var createPlayer = document.querySelector('#createPlayer');
 createPlayer.addEventListener('click', (e) => {
 	e.preventDefault();
-	let playerName = document.getElementById('name').value;
-	let playerLetter = document.getElementById('letter').value;
+	let playerName = pName.value;
+	let playerLetter = pLetter.value;
 
 	if (playerLetters[0] == null) {
-		document.getElementById('nameLabel').innerText = 'Player 2 Name: ';
+		nameLabel.innerText = 'Player 2 Name: ';
 		player1 = Player(playerName, playerLetter);
 		players.push(player1);
 		playerLetters.push(playerLetter);
 		playerLetter[0] == 'X' ? (otherLetter = 'O') : (otherLetter = 'X');
-		document.getElementById('letterOptions').style.display = 'none';
-		document.getElementById(
-			'letterInfo'
-		).innerText = `Player 1 has chosen: ${player1.letter}, Player 2 will play with: ${otherLetter}`;
-		document.getElementById('name').value = '';
+		letterOptions.style.display = 'none';
+		letterInfo.innerText = `Player 1 has chosen: ${player1.letter}, Player 2 will play with: ${otherLetter}`;
+		playerName = '';
 	} else if (playerLetters[0] != null && playerLetters[1] == null) {
 		playerLetter[0] == 'X' ? (otherLetter = 'O') : (otherLetter = 'X');
 		player2 = Player(playerName, otherLetter);
 		players.push(player2);
 		playerLetters.push(otherLetter);
-		document.getElementById('createPlayers').style.display = 'none';
-		document.getElementById('startGame').style.display = '';
-		document.getElementById('playerOne').innerText = player1.name;
-		document.getElementById('playerTwo').innerText = player2.name;
-		document.getElementById('oneLetter').innerText = player1.letter;
-		document.getElementById('twoLetter').innerText = player2.letter;
+
+		createPlayers.style.display = 'none';
+		startGame.style.display = '';
+		playerOne.innerText = player1.name;
+		playerTwo.innerText = player2.name;
+		oneLetter.innerText = player1.letter;
+		twoLetter.innerText = player2.letter;
+
 	} else {
 		return;
 	}
@@ -75,15 +100,14 @@ let player1 = players[0];
 let player2 = players[1];
 let currentPlayer;
 
-var startGamebtn = document.querySelector('#startGameButton');
 startGamebtn.addEventListener('click', (e) => {
 	e.preventDefault();
-	document.getElementById('startGame').style.display = 'none';
-	document.getElementById('board').style.display = '';
+	startGame.style.display = 'none';
+	board.style.display = '';
 
 	currentPlayer = players[Math.floor(Math.random() * 2)];
 
-	document.getElementById('playerName').innerText = currentPlayer.name;
+	playerName.innerText = currentPlayer.name;
 });
 
 cells.forEach((cell, index) => {
@@ -96,18 +120,18 @@ cells.forEach((cell, index) => {
 });
 
 const WINNING_ARRAY = [
-	[ 0, 1, 2 ],
-	[ 3, 4, 5 ],
-	[ 6, 7, 8 ],
-	[ 0, 3, 6 ],
-	[ 1, 4, 7 ],
-	[ 2, 5, 8 ],
-	[ 0, 4, 8 ],
-	[ 2, 4, 6 ]
+	[0, 1, 2],
+	[3, 4, 5],
+	[6, 7, 8],
+	[0, 3, 6],
+	[1, 4, 7],
+	[2, 5, 8],
+	[0, 4, 8],
+	[2, 4, 6]
 ];
 
-var combine = function(a, min) {
-	var fn = function(n, src, got, all) {
+var combine = function (a, min) {
+	var fn = function (n, src, got, all) {
 		if (n == 0) {
 			if (got.length > 0) {
 				all[all.length] = got;
@@ -115,7 +139,7 @@ var combine = function(a, min) {
 			return;
 		}
 		for (var j = 0; j < src.length; j++) {
-			fn(n - 1, src.slice(j + 1), got.concat([ src[j] ]), all);
+			fn(n - 1, src.slice(j + 1), got.concat([src[j]]), all);
 		}
 		return;
 	};
@@ -124,7 +148,7 @@ var combine = function(a, min) {
 	return all;
 };
 
-var permArr = [],
+let permArr = [],
 	usedChars = [];
 
 function permute(input) {
@@ -160,18 +184,11 @@ function isWinner(arr) {
 		});
 	}
 }
-function gameOver() {
-	document.getElementById('newRound').style.display = '';
-}
-
-function newRound() {
-	scores.update();
-}
 
 function gameOver() {
-	document.getElementById('board').style.display = 'none';
-	document.getElementById('newRound').style.display = '';
-	document.getElementById('winnerName').innerHTML = currentPlayer.name;
+	board.style.display = 'none';
+	newRound.style.display = '';
+	winnerName.innerHTML = currentPlayer.name;
 
 	cells.forEach((cell) => {
 		cell.innerHTML = '&nbsp;';
@@ -179,15 +196,13 @@ function gameOver() {
 	scores.update(currentPlayer.letter);
 }
 
-const reloader = document.querySelector('#reloader');
 reloader.addEventListener('click', () => {
 	location.reload();
 });
 
-const nextRound = document.querySelector('#nextRound');
 nextRound.addEventListener('click', () => {
 	player1.clearMoves();
 	player2.clearMoves();
-	document.getElementById('board').style.display = '';
-	document.getElementById('newRound').style.display = 'none';
+	board.style.display = '';
+	newRound.style.display = 'none';
 });
