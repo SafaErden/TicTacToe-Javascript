@@ -1,3 +1,7 @@
+document.getElementById('startGame').style.display = 'none';
+document.getElementById('board').style.display = 'none';
+document.getElementById('newRound').style.display = 'none';
+
 const scoreBoard = () => {
 	let x = 0;
 	let o = 0;
@@ -14,13 +18,9 @@ const scoreBoard = () => {
 	return { x, o, update };
 };
 
-document.getElementById('startGame').style.display = 'none';
-document.getElementById('board').style.display = 'none';
-document.getElementById('newRound').style.display = 'none';
-
 let scores = scoreBoard();
 
-const cells = document.querySelectorAll('.hoverable');
+let cells = document.querySelectorAll('.hoverable');
 
 let playerLetters = [];
 let players = [];
@@ -30,7 +30,12 @@ const Player = (name, letter) => {
 	const move = (cellNumber) => {
 		moves.push(cellNumber);
 	};
-	return { name, letter, move, moves };
+	const clearMoves = () => {
+		while (moves.length > 0) {
+			moves.pop();
+		}
+	};
+	return { name, letter, move, moves, clearMoves };
 };
 
 var createPlayer = document.querySelector('#createPlayer');
@@ -86,19 +91,10 @@ cells.forEach((cell, index) => {
 		currentPlayer == player1 ? (currentPlayer = player2) : (currentPlayer = player1);
 		e.currentTarget.innerText = currentPlayer.letter;
 		currentPlayer.move(index);
-		console.log(currentPlayer.moves);
 		isWinner(currentPlayer.moves);
 	});
 });
 
-// scoreBoard.updateScore(winner);
-
-// console.log(randPlayer())
-// const GameBoard = () => {
-// 	let gameBoard = [ 1, 2, 3, 4, 5, 6, 7, 8, 9 ];
-// };
-
-// const Game = (()=>{
 const WINNING_ARRAY = [
 	[ 0, 1, 2 ],
 	[ 3, 4, 5 ],
@@ -152,11 +148,13 @@ function isWinner(arr) {
 		possibilities.push(permute(item));
 	});
 	if (arr.length > 2) {
-		console.log(possibilities[0]);
 		possibilities[0].forEach((moves) => {
 			WINNING_ARRAY.forEach((item) => {
 				if (JSON.stringify(item) === JSON.stringify(moves)) {
-					console.log('winner');
+					gameOver();
+					while (possibilities.length > 0) {
+						possibilities.pop();
+					}
 				}
 			});
 		});
@@ -169,9 +167,27 @@ function gameOver() {
 function newRound() {
 	scores.update();
 }
-// return {currentPlayer, player1}
-// })();
 
-// Game.currentPlayer;
+function gameOver() {
+	document.getElementById('board').style.display = 'none';
+	document.getElementById('newRound').style.display = '';
+	document.getElementById('winnerName').innerHTML = currentPlayer.name;
 
-//
+	cells.forEach((cell) => {
+		cell.innerHTML = '&nbsp;';
+	});
+	scores.update(currentPlayer.letter);
+}
+
+const reloader = document.querySelector('#reloader');
+reloader.addEventListener('click', () => {
+	location.reload();
+});
+
+const nextRound = document.querySelector('#nextRound');
+nextRound.addEventListener('click', () => {
+	player1.clearMoves();
+	player2.clearMoves();
+	document.getElementById('board').style.display = '';
+	document.getElementById('newRound').style.display = 'none';
+});
