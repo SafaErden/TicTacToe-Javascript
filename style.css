@@ -1,9 +1,3 @@
-.hoverable {
-	padding: 6rem;
-}
-.board {
-
-}
 .hoverable:hover {
 	background-color: black !important;
 }
