@@ -1,29 +1,36 @@
-window.onload = () => {
-	const scoreBoard = () => {
-		let x = 0;
-		let o = 0;
+// window.onload = () => {
+const scoreBoard = () => {
+	let x = 0;
+	let o = 0;
 
-		const update = (winner) => {
-			if (winner == 'X') {
-				x += 1;
-				document.getElementById('xScore').innerText = x;
-			} else {
-				o += 1;
-				document.getElementById('oScore').innerText = o;
-			}
-		};
-		return { x, o, update };
+	const update = (winner) => {
+		if (winner == 'X') {
+			x += 1;
+			document.getElementById('xScore').innerText = x;
+		} else {
+			o += 1;
+			document.getElementById('oScore').innerText = o;
+		}
 	};
-
-	let scores = scoreBoard();
-	document.getElementById('startGame').style.display = 'none';
-	document.getElementById('board').style.display = 'none';
-	document.getElementById('newRound').style.display = 'none';
+	return { x, o, update };
 };
+
+
+document.getElementById('startGame').style.display = 'none';
+document.getElementById('board').style.display = 'none';
+document.getElementById('newRound').style.display = 'none';
+// };
+let scores = scoreBoard();
+
+const cells = document.querySelectorAll('.hoverable');
+
 let playerLetters = [];
+let players = [];
+
 const Player = (name, letter) => {
+	let moves = [];
 	const move = (cellNumber) => {
-		console.log(cellNumber, letter);
+		moves.push(cellNumber);
 	};
 	return { name, letter, move };
 };
@@ -37,6 +44,7 @@ createPlayer.addEventListener('click', (e) => {
 	if (playerLetters[0] == null) {
 		document.getElementById('nameLabel').innerText = 'Player 2 Name: ';
 		player1 = Player(playerName, playerLetter);
+		players.push(player1);
 		playerLetters.push(playerLetter);
 		playerLetter[0] == 'X' ? (otherLetter = 'O') : (otherLetter = 'X');
 		document.getElementById('letterOptions').style.display = 'none';
@@ -47,6 +55,7 @@ createPlayer.addEventListener('click', (e) => {
 	} else if (playerLetters[0] != null && playerLetters[1] == null) {
 		playerLetter[0] == 'X' ? (otherLetter = 'O') : (otherLetter = 'X');
 		player2 = Player(playerName, otherLetter);
+		players.push(player2);
 		playerLetters.push(otherLetter);
 		document.getElementById('createPlayers').style.display = 'none';
 		document.getElementById('startGame').style.display = '';
@@ -59,43 +68,68 @@ createPlayer.addEventListener('click', (e) => {
 	}
 });
 
-var createPlayer = document.querySelector('#startGameButton');
-createPlayer.addEventListener('click', (e) => {
+let player1 = players[0];
+let player2 = players[1];
+let currentPlayer;
+
+var startGamebtn = document.querySelector('#startGameButton');
+startGamebtn.addEventListener('click', (e) => {
 	e.preventDefault();
 	document.getElementById('startGame').style.display = 'none';
-	//initialize a new board here
-	// create board module with functions below
 	document.getElementById('board').style.display = '';
+	
+	currentPlayer = players[Math.floor(Math.random() * 2)]
+	
+	document.getElementById('playerName').innerText = currentPlayer.name;
+	
+	
 });
+
+cells.forEach((cell, index) => {
+	cell.addEventListener('click', (e) => {
+		currentPlayer == player1 ? currentPlayer = player2 : currentPlayer = player1;
+		e.currentTarget.innerText = currentPlayer.letter;
+		currentPlayer.move(index);
+		isWinner(currentPlayer.moves);
+	})
+})
 
 // scoreBoard.updateScore(winner);
 
+// console.log(randPlayer())
 // const GameBoard = () => {
 // 	let gameBoard = [ 1, 2, 3, 4, 5, 6, 7, 8, 9 ];
 // };
 
-// const Game = () => {
-// 	let player1 = new Player(name, letter);
-// 	let player2 = new Player();
+// const Game = (()=>{
+const WINNING_ARRAY = [
+	[0, 1, 2],
+	[3, 4, 5],
+	[6, 7, 8],
+	[0, 3, 6],
+	[1, 4, 7],
+	[2, 5, 8],
+	[0, 4, 8],
+	[2, 4, 6]];
 
-// 	function play(position) {
-// 		if (!turn(this.name)) {
-// 			return 'not your turn';
-// 		} else if (valid(position)) {
-// 			updateBoard(this.letter, position);
-// 		} else {
-// 			return 'please type a valid position';
-// 		}
-// 	}
+function isWinner(arr) {
+	WINNING_ARRAY.forEach((item) => {
+		if (JSON.stringify(item) === JSON.stringify(arr)) {
+			console.log("winner")
+		} else {
+			console.log("retry")
+		}
+	});
+};
 
-// 	function updateBoard(letter, position) {
-// 		/*some action*/
-// 		if (isWinner()) {
-// 			/* end game */
-// 		} else {
-// 			nextMove();
-// 		}
-// 	}
+function gameOver() {
+	document.getElementById('newRound').style.display = '';
+}
 
-// 	function isWinner() {}
-// };
+function newRound() {
+	scores.update()
+}
+	// return {currentPlayer, player1}
+// })();
+
+// Game.currentPlayer;

@@ -1,5 +1,11 @@
+.hoverable {
+	padding: 6rem;
+}
+.board {
+
+}
 .hoverable:hover {
-	background-color: black;
+	background-color: black !important;
 }
 
 .satisfy {
