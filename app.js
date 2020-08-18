@@ -1,64 +1,67 @@
-// import {
-// 	board,
-// 	newRound,
-// 	xScore,
-// 	oScore,
-// 	cells,
-// 	createPlayer,
-// 	pName,
-// 	pLetter,
-// 	nameLabel,
-// 	letterOptions,
-// 	letterInfo,
-// 	createPlayers,
-// 	startGame,
-// 	playerOne,
-// 	playerTwo,
-// 	oneLetter,
-// 	twoLetter,
-// 	reloader,
-// 	nextRound,
-// 	winnerName,
-// 	startGamebtn,
-// 	playerName
-// } from "./dom";
+import {
+	board,
+	newRound,
+	xScore,
+	oScore,
+	cells,
+	createPlayer,
+	pName,
+	pLetter,
+	letterOptions,
+	letterInfo,
+	createPlayers,
+	reloader,
+	nextRound,
+	winnerName,
+	playerName,
+	player_1,
+	player_2
+} from "./dom.js";
 
 
-const board = document.getElementById('board')
-const newRound = document.getElementById('newRound')
+board.style.display = "none";
+newRound.style.display = "none";
 
-const xScore = document.getElementById('xScore')
-const oScore = document.getElementById('oScore')
+let players = [];
 
-const cells = document.querySelectorAll('.hoverable');
-const createPlayer = document.querySelector('#createPlayer');
+const Player = (name, letter) => {
+	let moves = [];
+	const move = (cellNumber) => {
+		moves.push(cellNumber);
+	};
+	const clearMoves = () => {
+		while (moves.length > 0) {
+			moves.pop();
+		}
+	};
+	return { name, letter, move, moves, clearMoves };
+};
 
-const pName = document.getElementById('name');
-const pLetter = document.getElementById('letter');
-const nameLabel = document.getElementById('nameLabel');
-const letterOptions = document.getElementById('letterOptions');
-const letterInfo = document.getElementById('letterInfo');
-const createPlayers = document.getElementById('createPlayers');
-const startGame = document.getElementById('startGame');
-const playerOne = document.getElementById('playerOne');
-const playerTwo = document.getElementById('playerTwo');
-const oneLetter = document.getElementById('oneLetter');
-const twoLetter = document.getElementById('twoLetter');
-const reloader = document.querySelector('#reloader');
-const nextRound = document.querySelector('#nextRound');
-const winnerName = document.getElementById('winnerName');
-const startGamebtn = document.querySelector('#startGameButton');
-const playerName = document.getElementById('playerName');
+createPlayer.addEventListener('click', (e) => {
+	e.preventDefault();
 
+	if (players.length == 0) {
+		player1 = Player(pName.value, pLetter.value);
+		players.push(player1);
+		player_1.innerText = player1.name;
+		letterInfo.innerText = `${player1.name} has chosen: ${player1.letter}, Player 2 will play with: ${player1.letter == 'X' ? 'O' : 'X'}`;
+		pName.value = '';
+		letterOptions.style.display = 'none';
+	} else {
+		let otherLetter = player1.letter == 'X' ? 'O' : 'X';
+		player2 = Player(pName.value, otherLetter);
+		players.push(player2);
+		player_2.innerText = player2.name;
+		createPlayers.style.display = 'none';
+		board.style.display = '';
+		playerName.innerText = player1.name;
+	}
+	createPlayer.innerText = 'Start Game';
+});
 
-
-
-
-
-startGame.style.display = 'none';
-board.style.display = 'none';
-newRound.style.display = 'none';
-
+let player1 = players[0];
+let player2 = players[1];
+let currentPlayer;
 
 const scoreBoard = () => {
 	let x = 0;
@@ -79,72 +82,11 @@ const scoreBoard = () => {
 let scores = scoreBoard();
 
 
-let playerLetters = [];
-let players = [];
-
-const Player = (name, letter) => {
-	let moves = [];
-	const move = (cellNumber) => {
-		moves.push(cellNumber);
-	};
-	const clearMoves = () => {
-		while (moves.length > 0) {
-			moves.pop();
-		}
-	};
-	return { name, letter, move, moves, clearMoves };
-};
-
-createPlayer.addEventListener('click', (e) => {
-	e.preventDefault();
-	let playerName = pName.value;
-	let playerLetter = pLetter.value;
-
-	if (playerLetters[0] == null) {
-		nameLabel.innerText = 'Player 2 Name: ';
-		player1 = Player(playerName, playerLetter);
-		players.push(player1);
-		playerLetters.push(playerLetter);
-		playerLetter[0] == 'X' ? (otherLetter = 'O') : (otherLetter = 'X');
-		pName.value = '';
-		letterOptions.style.display = 'none';
-		letterInfo.innerText = `${player1.name} has chosen: ${player1.letter}, Player 2 will play with: ${otherLetter}`;
-	} else if (playerLetters[0] != null && playerLetters[1] == null) {
-		playerLetter[0] == 'X' ? (otherLetter = 'O') : (otherLetter = 'X');
-		player2 = Player(playerName, otherLetter);
-		players.push(player2);
-		playerLetters.push(otherLetter);
-
-		createPlayers.style.display = 'none';
-		startGame.style.display = '';
-		playerOne.innerText = player1.name;
-		playerTwo.innerText = player2.name;
-		oneLetter.innerText = player1.letter;
-		twoLetter.innerText = player2.letter;
-
-	} else {
-		return;
-	}
-});
-
-let player1 = players[0];
-let player2 = players[1];
-let currentPlayer;
-
-startGamebtn.addEventListener('click', (e) => {
-	e.preventDefault();
-	startGame.style.display = 'none';
-	board.style.display = '';
-
-	currentPlayer = players[Math.floor(Math.random() * 2)];
-
-	playerName.innerText = currentPlayer.name;
-});
-
 cells.forEach((cell, index) => {
-	cell.addEventListener('click', (e) => {
+	cell.addEventListener('click', () => {
+		playerName.parentNode.style.display = 'none';
 		currentPlayer == player1 ? (currentPlayer = player2) : (currentPlayer = player1);
-		e.currentTarget.innerText = currentPlayer.letter;
+		cell.innerText = currentPlayer.letter;
 		currentPlayer.move(index);
 		isWinner(currentPlayer.moves);
 	});

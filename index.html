@@ -24,9 +24,9 @@
       <div class="col-6 text-center">
         <h2 class="text-success">Score Board</h2>
         <div class="row">
-          <div class="col-6 text-center h3 bg-primary text-white p-3 border border-white rounded font-weight-bold">X:
+          <div class="col-6 text-center h3 bg-primary text-white p-3 border border-white rounded font-weight-bold"><span id="player1">Player 1</span>:
             <span class="font-weight-normal" id="xScore">0</span></div>
-          <div class="col-6 text-center h3 bg-primary text-white p-3 border border-white rounded font-weight-bold">O:
+          <div class="col-6 text-center h3 bg-primary text-white p-3 border border-white rounded font-weight-bold"><span id="player2">Player 2</span>:
             <span class="font-weight-normal" id="oScore">0</span></div>
         </div>
       </div>
@@ -50,22 +50,10 @@
       </form>
     </div>
 
-    <div class="row p-5" id="startGame">
-      <div class="col-6 text-center h3 bg-primary text-white p-3 border border-white rounded font-weight-bold">Player 1:
-        <span class="font-weight-normal" id="playerOne"></span>
-        <div id="oneLetter"></div>
-      </div>
-      <div class="col-6 text-center h3 bg-primary text-white p-3 border border-white rounded font-weight-bold">Player 2:
-        <span class="font-weight-normal" id="playerTwo"></span>
-        <div id="twoLetter"></div>
-      </div>
-      <button type="submit" class="btn btn-success w-100 p-3" id="startGameButton">Start Game</button>
-    </div>
-
     <div class="mt-5" id="board">
       <div class="row d-flex align-items-center justify-content-center">
         <div class="col-9 text-success h3 p-0">
-          <span id="playerName">Player</span> it is your turn...
+          <span id="playerName">Player</span> starts...
         </div>
       </div>
       <div class="row d-flex align-items-center justify-content-center">
@@ -111,7 +99,7 @@
 
 
 
-  <script src="app.js"></script>
+  <script type="module" src="app.js"></script>
   <!-- JS, Popper.js, and jQuery -->
   <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
     integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
