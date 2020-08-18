@@ -48,4 +48,4 @@ export {
   winnerName,
   startGamebtn,
   playerName
-}
+};

@@ -1,27 +1,58 @@
-import {
-	board,
-	newRound,
-	xScore,
-	oScore,
-	cells,
-	createPlayer,
-	pName,
-	pLetter,
-	nameLabel,
-	letterOptions,
-	letterInfo,
-	createPlayers,
-	startGame,
-	playerOne,
-	playerTwo,
-	oneLetter,
-	twoLetter,
-	reloader,
-	nextRound,
-	winnerName,
-	startGamebtn,
-	playerName
-} from "dom";
+// import {
+// 	board,
+// 	newRound,
+// 	xScore,
+// 	oScore,
+// 	cells,
+// 	createPlayer,
+// 	pName,
+// 	pLetter,
+// 	nameLabel,
+// 	letterOptions,
+// 	letterInfo,
+// 	createPlayers,
+// 	startGame,
+// 	playerOne,
+// 	playerTwo,
+// 	oneLetter,
+// 	twoLetter,
+// 	reloader,
+// 	nextRound,
+// 	winnerName,
+// 	startGamebtn,
+// 	playerName
+// } from "./dom";
+
+
+const board = document.getElementById('board')
+const newRound = document.getElementById('newRound')
+
+const xScore = document.getElementById('xScore')
+const oScore = document.getElementById('oScore')
+
+const cells = document.querySelectorAll('.hoverable');
+const createPlayer = document.querySelector('#createPlayer');
+
+const pName = document.getElementById('name');
+const pLetter = document.getElementById('letter');
+const nameLabel = document.getElementById('nameLabel');
+const letterOptions = document.getElementById('letterOptions');
+const letterInfo = document.getElementById('letterInfo');
+const createPlayers = document.getElementById('createPlayers');
+const startGame = document.getElementById('startGame');
+const playerOne = document.getElementById('playerOne');
+const playerTwo = document.getElementById('playerTwo');
+const oneLetter = document.getElementById('oneLetter');
+const twoLetter = document.getElementById('twoLetter');
+const reloader = document.querySelector('#reloader');
+const nextRound = document.querySelector('#nextRound');
+const winnerName = document.getElementById('winnerName');
+const startGamebtn = document.querySelector('#startGameButton');
+const playerName = document.getElementById('playerName');
+
+
+
+
 
 
 startGame.style.display = 'none';
@@ -75,9 +106,9 @@ createPlayer.addEventListener('click', (e) => {
 		players.push(player1);
 		playerLetters.push(playerLetter);
 		playerLetter[0] == 'X' ? (otherLetter = 'O') : (otherLetter = 'X');
+		pName.value = '';
 		letterOptions.style.display = 'none';
-		letterInfo.innerText = `Player 1 has chosen: ${player1.letter}, Player 2 will play with: ${otherLetter}`;
-		playerName = '';
+		letterInfo.innerText = `${player1.name} has chosen: ${player1.letter}, Player 2 will play with: ${otherLetter}`;
 	} else if (playerLetters[0] != null && playerLetters[1] == null) {
 		playerLetter[0] == 'X' ? (otherLetter = 'O') : (otherLetter = 'X');
 		player2 = Player(playerName, otherLetter);
