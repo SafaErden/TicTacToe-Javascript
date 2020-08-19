@@ -10,13 +10,16 @@
 [![Made By](https://img.shields.io/badge/Made%20By-Safa%20Erden-brightgreen)](https://github.com/safaerden)
 
 </div>
-<p align="center">
-   <img src="assets/tictactoe.JPG" width="600" height="400">
-</p>
+
 
 ---
 
-## 📝 Content
+<br>
+<br>
+
+<p align="center">
+   <img src="assets/tictactoe.JPG" width="600" height="400">
+</p>
 
 <p align="center">
 <a href="#about">About</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
