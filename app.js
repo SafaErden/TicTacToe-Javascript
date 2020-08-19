@@ -41,27 +41,30 @@ const Player = (name, letter) => {
 
 createPlayer.addEventListener('click', (e) => {
 	e.preventDefault();
-
-	if (players.length == 0) {
-		player1 = Player(pName.value, pLetter.value);
-		players.push(player1);
-		player_1.innerText = player1.name;
-		letterInfo.innerText = `${player1.name} has chosen: ${player1.letter}, Player 2 will play with: ${player1.letter ==
-		'X'
-			? 'O'
-			: 'X'}`;
-		pName.value = '';
-		letterOptions.style.display = 'none';
+	if (pName.value.length > 2) {
+		if (players.length == 0) {
+			player1 = Player(pName.value, pLetter.value);
+			players.push(player1);
+			player_1.innerText = player1.name;
+			letterInfo.innerText = `${player1.name} has chosen: ${player1.letter}, Player 2 will play with: ${player1.letter ==
+			'X'
+				? 'O'
+				: 'X'}`;
+			pName.value = '';
+			letterOptions.style.display = 'none';
+		} else {
+			let otherLetter = player1.letter == 'X' ? 'O' : 'X';
+			player2 = Player(pName.value, otherLetter);
+			players.push(player2);
+			player_2.innerText = player2.name;
+			createPlayers.style.display = 'none';
+			board.style.display = '';
+			playerName.innerText = player1.name;
+		}
+		createPlayer.innerText = 'Start Game';
 	} else {
-		let otherLetter = player1.letter == 'X' ? 'O' : 'X';
-		player2 = Player(pName.value, otherLetter);
-		players.push(player2);
-		player_2.innerText = player2.name;
-		createPlayers.style.display = 'none';
-		board.style.display = '';
-		playerName.innerText = player1.name;
+		alert('Please type a valid name which has at least 3 letters!');
 	}
-	createPlayer.innerText = 'Start Game';
 });
 
 let player1 = players[0];
