@@ -10,6 +10,9 @@
 [![Made By](https://img.shields.io/badge/Made%20By-Safa%20Erden-brightgreen)](https://github.com/safaerden)
 
 </div>
+<p align="center">
+   <img src="assets/tictactoe.JPG" width="600" height="400">
+</p>
 
 ---
 
@@ -28,29 +31,29 @@
 
 - If you want to play it online visit [this link](https://rawcdn.githack.com/SafaErden/TicTacToe-Javascript/1684e65107f30bc98486f3d0a39f02a4d4cd09cc/index.html) to reach and play our tic tac toe game online.
 
-<h2>How to start the game?</h2>
+## How to start the game?
 
-1- download this repository
+- download this repository
 
-2- unpack it (winrar recommended)
+- unpack it (winrar recommended)
 
-3- copy its address e.g.: c:\users\you\downloads\tictactoe
+- copy its address e.g.: c:\users\you\downloads\tictactoe
 
-4- open your terminal commandline (powershell in my case)
+- open your terminal commandline (powershell in my case)
 
-5- write "cd" and put the address of the game folder
+- write "cd" and put the address of the game folder
 
-6- now, to run the game, open the index file with Live Server
+- now, to run the game, open the index file with Live Server
 
-7- Have fun!
+- Have fun!
 
-<h2>Rules</h2>
+## Rules
 
 You probably already know how to play Tic-Tac-Toe. It's a really simple game, right? That's what most people think. But if you really wrap your brain around it, you'll discover that Tic-Tac-Toe isn't quite as simple as you think!
 
 Tic-Tac -Toe (along with a lot of other games) involves looking ahead and trying to figure out what the person playing against you might do next.
 
-RULES FOR TIC-TAC-TOE
+## RULES FOR TIC-TAC-TOE
 
 1. The game is played on a grid that's 3 squares by 3 squares.
 
@@ -60,15 +63,15 @@ RULES FOR TIC-TAC-TOE
 
 4. When all 9 squares are full, the game is over. If no player has 3 marks in a row, the game ends in a tie.
 
-   HOW CAN I WIN AT TIC-TAC-TOE?
+## HOW CAN I WIN AT TIC-TAC-TOE?
 
-To beat the other, you need to make use of a little bit of strategy. Strategy means figuring out what you need to do to win.
+- To beat the other, you need to make use of a little bit of strategy. Strategy means figuring out what you need to do to win.
 
-Part of your strategy is trying to figure out how to get three Xs or Os in a row. The other part is trying to figure out how to stop the other player from getting three Os or Xs in a row.
+- Part of your strategy is trying to figure out how to get three Xs or Os in a row. The other part is trying to figure out how to stop the other player from getting three Os or Xs in a row.
 
-After you put a sign in a square, you start looking ahead. Where's the best place for your next move? You look at the empty squares and decide which ones are good choices—which ones might let you make three Xs or Os in a row.
+- After you put a sign in a square, you start looking ahead. Where's the best place for your next move? You look at the empty squares and decide which ones are good choices—which ones might let you make three Xs or Os in a row.
 
-You also have to watch where the other player puts its move. That could change what you do next. If the component gets two Os or Xs in a row, you have to put your next move in the last empty square in that row, or the component will win. You are forced to play in a particular square or lose the game.
+- You also have to watch where the other player puts its move. That could change what you do next. If the component gets two Os or Xs in a row, you have to put your next move in the last empty square in that row, or the component will win. You are forced to play in a particular square or lose the game.
 
 If you always pay attention and look ahead, you'll never lose a game of Tic-Tac-Toe. You may not win, but at least you'll tie.
 <a href="https://www.exploratorium.edu/brain_explorer/tictactoe.html">Source</a>
