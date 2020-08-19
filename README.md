@@ -26,7 +26,7 @@
 
 <h3 align="center"> In this project, we built a Tic Tac Toe game. The main goal is to put into practice the main concepts of Factory functions and Modules.</h3>
 
-- If you want to play it online visit [this repl link](https://repl.it/@SafaErden/Tic-Tac-Toe) to reach and play our tic tac toe game online.
+- If you want to play it online visit [this link](https://rawcdn.githack.com/SafaErden/TicTacToe-Javascript/1684e65107f30bc98486f3d0a39f02a4d4cd09cc/index.html) to reach and play our tic tac toe game online.
 
 <h2>How to start the game?</h2>
 
