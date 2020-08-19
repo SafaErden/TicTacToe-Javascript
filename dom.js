@@ -15,9 +15,11 @@ const winnerName = document.getElementById('winnerName');
 const playerName = document.getElementById('playerName');
 const player_1 = document.getElementById('player1');
 const player_2 = document.getElementById('player2');
+const img = document.getElementById('img');
 
 
 export {
+  img,
   board,
   newRound,
   xScore,
