@@ -34,6 +34,7 @@ const WINNING_ARRAY = [
 	[ 2, 4, 6 ]
 ];
 let gameBoard = { 0: '', 1: '', 2: '', 3: '', 4: '', 5: '', 6: '', 7: '', 8: '' };
+let currentPlayer;
 
 const Player = (name, letter) => {
 	return { name, letter };
@@ -60,6 +61,7 @@ createPlayer.addEventListener('click', (e) => {
 			createPlayers.style.display = 'none';
 			board.style.display = '';
 			playerName.innerText = player1.name;
+			currentPlayer = player1;
 		}
 		createPlayer.innerText = 'Start Game';
 	} else {
@@ -69,7 +71,6 @@ createPlayer.addEventListener('click', (e) => {
 
 let player1 = players[0];
 let player2 = players[1];
-let currentPlayer;
 
 const scoreBoard = () => {
 	let x = 0;
@@ -83,6 +84,7 @@ const scoreBoard = () => {
 			o += 1;
 			oScore.innerText = o;
 		}
+		return;
 	};
 	return { x, o, update };
 };
@@ -92,15 +94,14 @@ let scores = scoreBoard();
 cells.forEach((cell, index) => {
 	cell.addEventListener('click', () => {
 		if (gameBoard[index] == '') {
-			playerName.parentNode.style.display = 'none';
-
-			currentPlayer == player1 ? (currentPlayer = player2) : (currentPlayer = player1);
 			gameBoard[index] = currentPlayer.letter;
 			cell.innerText = gameBoard[index];
-			console.log(gameBoard);
+			currentPlayer == player1 ? (currentPlayer = player2) : (currentPlayer = player1);
+			playerName.innerText = currentPlayer.name;
 
 			if (isWinner(gameBoard) > 0) {
-				scores.update(currentPlayer.letter);
+				currentPlayer == player2 ? scores.update(player1.letter) : scores.update(player2.letter);
+
 				gameOver();
 			}
 			if (isFull()) {
@@ -139,7 +140,7 @@ function isFull() {
 function gameOver(draw = false) {
 	board.style.display = 'none';
 	newRound.style.display = '';
-	winnerName.innerHTML = currentPlayer.name;
+	currentPlayer == player2 ? (winnerName.innerHTML = player1.name) : (winnerName.innerHTML = player2.name);
 
 	cells.forEach((cell) => {
 		cell.innerHTML = '&nbsp;';
