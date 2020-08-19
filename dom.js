@@ -1,7 +1,7 @@
-const board = document.getElementById('board')
-const newRound = document.getElementById('newRound')
-const xScore = document.getElementById('xScore')
-const oScore = document.getElementById('oScore')
+const board = document.getElementById('board');
+const newRound = document.getElementById('newRound');
+const xScore = document.getElementById('xScore');
+const oScore = document.getElementById('oScore');
 const cells = document.querySelectorAll('.hoverable');
 const createPlayer = document.querySelector('#createPlayer');
 const pName = document.getElementById('name');
@@ -13,8 +13,8 @@ const reloader = document.querySelector('#reloader');
 const nextRound = document.querySelector('#nextRound');
 const winnerName = document.getElementById('winnerName');
 const playerName = document.getElementById('playerName');
-const player_1 = document.getElementById('player1');
-const player_2 = document.getElementById('player2');
+const players1 = document.getElementById('player1');
+const players2 = document.getElementById('player2');
 const img = document.getElementById('img');
 
 
@@ -35,6 +35,6 @@ export {
   nextRound,
   winnerName,
   playerName,
-  player_1,
-  player_2
+  players1,
+  players2,
 };

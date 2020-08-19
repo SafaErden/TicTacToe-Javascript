@@ -92,8 +92,8 @@ If you always pay attention and look ahead, you'll never lose a game of Tic-Tac-
 👤 **Phillip Musiime**
 
 - Github: [@phillipmusiime](https://github.com/PhillipUg)
-- Twitter: [@phillipmusiime]()
-- Linkedin: [@phillipmusiime]()
+- Twitter: [@phillipmusiime](https://twitter.com/Phillip_Ug)
+- Linkedin: [@phillipmusiime](https://www.linkedin.com/in/phillip-musiime/)
 
 ## 🤝 Contributing
 

@@ -1,15 +1,15 @@
 .hoverable:hover {
-	background-color: black !important;
+  background-color: black !important;
 }
 
 .satisfy {
-	font-family: 'Satisfy', cursive;
+  font-family: 'Satisfy', cursive;
 }
 
 .text-primary {
-	color: #000080 !important;
+  color: #000080 !important;
 }
 
 .bg-primary {
-	background-color: #00006d !important;
+  background-color: #00006d !important;
 }
