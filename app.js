@@ -17,20 +17,26 @@ import {
 	playerName,
 	player_1,
 	player_2
-} from "./dom.js";
+} from './dom.js';
 
-
-board.style.display = "none";
-newRound.style.display = "none";
+board.style.display = 'none';
+newRound.style.display = 'none';
 
 let players = [];
-const WINNING_ARRAY = [[0, 1, 2], [3, 4, 5], [6, 7, 8], [0, 3, 6], [1, 4, 7], [2, 5, 8], [0, 4, 8], [2, 4, 6]];
-let gameBoard = { 0: '', 1: '', 2: '', 3: '', 4: '', 5: '', 6: '', 7: '', 8: '' }
-
+const WINNING_ARRAY = [
+	[ 0, 1, 2 ],
+	[ 3, 4, 5 ],
+	[ 6, 7, 8 ],
+	[ 0, 3, 6 ],
+	[ 1, 4, 7 ],
+	[ 2, 5, 8 ],
+	[ 0, 4, 8 ],
+	[ 2, 4, 6 ]
+];
+let gameBoard = { 0: '', 1: '', 2: '', 3: '', 4: '', 5: '', 6: '', 7: '', 8: '' };
 
 const Player = (name, letter) => {
-	
-	return { name, letter};
+	return { name, letter };
 };
 
 createPlayer.addEventListener('click', (e) => {
@@ -40,7 +46,10 @@ createPlayer.addEventListener('click', (e) => {
 		player1 = Player(pName.value, pLetter.value);
 		players.push(player1);
 		player_1.innerText = player1.name;
-		letterInfo.innerText = `${player1.name} has chosen: ${player1.letter}, Player 2 will play with: ${player1.letter == 'X' ? 'O' : 'X'}`;
+		letterInfo.innerText = `${player1.name} has chosen: ${player1.letter}, Player 2 will play with: ${player1.letter ==
+		'X'
+			? 'O'
+			: 'X'}`;
 		pName.value = '';
 		letterOptions.style.display = 'none';
 	} else {
@@ -77,21 +86,23 @@ const scoreBoard = () => {
 
 let scores = scoreBoard();
 
-
 cells.forEach((cell, index) => {
 	cell.addEventListener('click', () => {
-		playerName.parentNode.style.display = 'none';
-		currentPlayer == player1 ? (currentPlayer = player2) : (currentPlayer = player1);
-		gameBoard[index] = currentPlayer.letter;
-		cell.innerText = gameBoard[index]
-		console.log(gameBoard);
+		if (gameBoard[index] == '') {
+			playerName.parentNode.style.display = 'none';
 
-		if (isWinner(gameBoard) > 0) {
-			scores.update(currentPlayer.letter);
-			gameOver();
-		}
-		if (isFull()) {
-			gameOver(true);
+			currentPlayer == player1 ? (currentPlayer = player2) : (currentPlayer = player1);
+			gameBoard[index] = currentPlayer.letter;
+			cell.innerText = gameBoard[index];
+			console.log(gameBoard);
+
+			if (isWinner(gameBoard) > 0) {
+				scores.update(currentPlayer.letter);
+				gameOver();
+			}
+			if (isFull()) {
+				gameOver(true);
+			}
 		}
 	});
 });
@@ -119,11 +130,8 @@ function isWinner() {
 }
 
 function isFull() {
-	return !Object.values(gameBoard).includes("");
+	return !Object.values(gameBoard).includes('');
 }
-
-
-
 
 function gameOver(draw = false) {
 	board.style.display = 'none';
@@ -133,22 +141,20 @@ function gameOver(draw = false) {
 	cells.forEach((cell) => {
 		cell.innerHTML = '&nbsp;';
 	});
-	gameBoard = { 0: '', 1: '', 2: '', 3: '', 4: '', 5: '', 6: '', 7: '', 8: '' }
+	gameBoard = { 0: '', 1: '', 2: '', 3: '', 4: '', 5: '', 6: '', 7: '', 8: '' };
 	if (draw == true) {
-		img.src = "assets/draw.jpg";
-		winnerName.parentNode.style.display = "none"
+		img.src = 'assets/draw.jpg';
+		winnerName.parentNode.style.display = 'none';
 	}
 }
 
 nextRound.addEventListener('click', () => {
 	board.style.display = '';
 	newRound.style.display = 'none';
-	img.src = "assets/congrats.jpg";
-	winnerName.parentNode.style.display = ""
-
+	img.src = 'assets/congrats.jpg';
+	winnerName.parentNode.style.display = '';
 });
 
 reloader.addEventListener('click', () => {
 	location.reload();
 });
-
