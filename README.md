@@ -1,34 +1,13 @@
 <h3 align="center">Java Script- TicTacToe Project</h3>
 
-<div align="center">
-
-[![Status](https://img.shields.io/badge/status-active-success.svg)]()
-[![Github Issues](https://img.shields.io/badge/GitHub-Issues-orange)](https://github.com/SafaErden/TicTacToe-Javascript/issues)
-[![GitHub2 Pull Requests](https://img.shields.io/badge/GitHub-Pull%20Requests-blue)](https://github.com/SafaErden/TicTacToe-Javascript/pulls)
-[![License](https://img.shields.io/badge/license-MIT-blue.svg)](/LICENSE)
-[![Made By](https://img.shields.io/badge/Made%20By-Phillip%20Musiime-brightgreen)](https://github.com/PhillipUg) &
-[![Made By](https://img.shields.io/badge/Made%20By-Safa%20Erden-brightgreen)](https://github.com/safaerden)
-
-</div>
-
 
 ---
-
-<br>
-<br>
 
 <p align="center">
    <img src="assets/tictactoe.JPG" width="600" height="400">
 </p>
 
-<p align="center">
-<a href="#about">About</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
-<a href="#installing">Installing</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
-<a href="#built_using">Built with</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
-<a href="#author">Authors</a>
-</p>
-
-## 🧐 About <a name = "about"></a>
+## About <a name = "about"></a>
 
 <h3 align="center"> In this project, we built a Tic Tac Toe game. The main goal is to put into practice the main concepts of Factory functions and Modules.</h3>
 
