@@ -20,6 +20,7 @@ import {
 } from './dom.js'; /*eslint-disable-line */
 
 import GameLogic from './gameLogic.js';
+import ScoreBoard from './scoreBoard.js';
 
 board.style.display = 'none';
 newRound.style.display = 'none';
@@ -50,13 +51,18 @@ let currentPlayer;
 let player1;
 let player2;
 
-const Player = (name, letter) => ({ name, letter });
+const Player = (name, letter, score) => {
+	function updateScore(score) {
+		this.score = score;
+	}
+	return { name, letter, updateScore, score };
+};
 
 createPlayer.addEventListener('click', (e) => {
 	e.preventDefault();
 	if (pName.value.length > 2) {
 		if (players.length === 0) {
-			player1 = Player(pName.value, pLetter.value);
+			player1 = Player(pName.value, pLetter.value, 0);
 			players.push(player1);
 			players1.innerText = player1.name;
 			letterInfo.innerText = `${player1.name} has chosen: ${player1.letter}, Player 2 will play with: ${player1.letter ===
@@ -67,7 +73,7 @@ createPlayer.addEventListener('click', (e) => {
 			letterOptions.style.display = 'none';
 		} else {
 			const otherLetter = player1.letter === 'X' ? 'O' : 'X';
-			player2 = Player(pName.value, otherLetter);
+			player2 = Player(pName.value, otherLetter, 0);
 			players.push(player2);
 			players2.innerText = player2.name;
 			createPlayers.style.display = 'none';
@@ -83,23 +89,7 @@ createPlayer.addEventListener('click', (e) => {
 
 [ player1, player2 ] = [ ...players ];
 
-const scoreBoard = () => {
-	let x = 0;
-	let o = 0;
-
-	const update = (winner) => {
-		if (winner === 'X') {
-			x += 1;
-			xScore.innerText = x;
-		} else {
-			o += 1;
-			oScore.innerText = o;
-		}
-	};
-	return { x, o, update };
-};
-
-const scores = scoreBoard();
+const scores = ScoreBoard();
 
 function gameOver(draw = false) {
 	board.style.display = 'none';
@@ -137,10 +127,16 @@ cells.forEach((cell, index) => {
 			playerName.innerText = currentPlayer.name;
 
 			if (GameLogic.isWinner(WINNING_ARRAY, gameBoard) > 0) {
-				currentPlayer === player2
-					? scores.update(player1.letter)
-					: scores.update(player2.letter); /*eslint-disable-line */
-
+				if (currentPlayer === player2) {
+					scores.update(player1.letter, currentPlayer);
+				} else {
+					scores.update(player2.letter, currentPlayer);
+				}
+				if (currentPlayer.letter === 'O') {
+					xScore.innerHTML = currentPlayer.score;
+				} else {
+					oScore.innerHTML = currentPlayer.score;
+				}
 				gameOver();
 			}
 			if (GameLogic.isFull(gameBoard)) {

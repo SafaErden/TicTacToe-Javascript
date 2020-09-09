@@ -25,6 +25,7 @@ const GameLogic = (() => {
 		}
 		return 0;
 	}
+
 	return { isFull, patternWins, isWinner };
 })();
 

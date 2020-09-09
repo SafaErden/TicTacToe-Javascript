@@ -27,6 +27,6 @@ test('it returns true if the given pattern is one of the winner pattern in the w
 	expect(GameLogic.patternWins(WINNING_ARRAY[0], 'X', winnerBoard)).toBe(true);
 });
 
-test('decribe here', () => {
+test('Returns 1 if x is winner', () => {
 	expect(GameLogic.isWinner(WINNING_ARRAY, winnerBoard)).toBe(1);
 });
