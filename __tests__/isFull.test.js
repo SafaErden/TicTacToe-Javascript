@@ -1,4 +1,4 @@
-import isFull from '../isFull.js';
+import GameLogic from '../scripts/gameLogic.js';
 
 let gameBoard1 = {
 	0: '',
@@ -24,9 +24,9 @@ let gameBoard2 = {
 };
 
 test('it returns false if there are any empty spaces on the board', () => {
-	expect(isFull(gameBoard1)).toBe(false);
+	expect(GameLogic.isFull(gameBoard1)).toBe(false);
 });
 
 test("it returns true if there isn't any empty space on the board", () => {
-	expect(isFull(gameBoard2)).toBe(true);
+	expect(GameLogic.isFull(gameBoard2)).toBe(true);
 });

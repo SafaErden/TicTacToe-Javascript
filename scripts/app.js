@@ -19,7 +19,7 @@ import {
 	players2
 } from './dom.js'; /*eslint-disable-line */
 
-import isFull from './isFull.js';
+import GameLogic from './gameLogic.js';
 
 board.style.display = 'none';
 newRound.style.display = 'none';
@@ -128,29 +128,6 @@ function gameOver(draw = false) {
 	}
 }
 
-function patternWins(pattern, symbol) {
-	for (let j = 0; j < pattern.length; j += 1) {
-		const gameboardIndex = pattern[j];
-		if (gameBoard[gameboardIndex] !== symbol) {
-			return false;
-		}
-	}
-	return true;
-}
-
-function isWinner() {
-	for (let index = 0; index < WINNING_ARRAY.length; index += 1) {
-		const element = WINNING_ARRAY[index];
-		if (patternWins(element, 'X')) {
-			return 1;
-		}
-		if (patternWins(element, 'O')) {
-			return 2;
-		}
-	}
-	return 0;
-}
-
 cells.forEach((cell, index) => {
 	cell.addEventListener('click', () => {
 		if (gameBoard[index] === '') {
@@ -159,14 +136,14 @@ cells.forEach((cell, index) => {
 			currentPlayer === player1 ? (currentPlayer = player2) : (currentPlayer = player1); /*eslint-disable-line */
 			playerName.innerText = currentPlayer.name;
 
-			if (isWinner(gameBoard) > 0) {
+			if (GameLogic.isWinner(WINNING_ARRAY, gameBoard) > 0) {
 				currentPlayer === player2
 					? scores.update(player1.letter)
 					: scores.update(player2.letter); /*eslint-disable-line */
 
 				gameOver();
 			}
-			if (isFull(gameBoard)) {
+			if (GameLogic.isFull(gameBoard)) {
 				gameOver(true);
 			}
 		}
@@ -183,5 +160,3 @@ nextRound.addEventListener('click', () => {
 reloader.addEventListener('click', () => {
 	window.location.reload();
 });
-
-export { isFull };
