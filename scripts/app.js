@@ -21,6 +21,7 @@ import {
 
 import GameLogic from './gameLogic.js';
 import ScoreBoard from './scoreBoard.js';
+import Player from './player.js';
 
 board.style.display = 'none';
 newRound.style.display = 'none';
@@ -50,13 +51,6 @@ let gameBoard = {
 let currentPlayer;
 let player1;
 let player2;
-
-const Player = (name, letter, score) => {
-	function updateScore(score) {
-		this.score = score;
-	}
-	return { name, letter, updateScore, score };
-};
 
 createPlayer.addEventListener('click', (e) => {
 	e.preventDefault();
@@ -156,3 +150,5 @@ nextRound.addEventListener('click', () => {
 reloader.addEventListener('click', () => {
 	window.location.reload();
 });
+
+export { Player };
